@@ -83,7 +83,7 @@ function PoemDetail() {
 
       <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-8">
         <div className="flex flex-wrap gap-2">
-          {poem.tags.map((t) => (
+          {poem.tags.map((t: string) => (
             <span
               key={t}
               className="text-xs rounded-full bg-secondary px-2.5 py-0.5 text-secondary-foreground"
