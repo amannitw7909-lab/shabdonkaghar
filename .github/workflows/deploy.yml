@@ -1,0 +1,54 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - name: Build static site
+        env:
+          NITRO_PRESET: static
+        run: bun run build
+      - name: Prepare Pages artifact
+        run: |
+          # TanStack Start (nitro static preset) outputs to .output/public
+          # Fall back to dist/ if that path doesn't exist.
+          if [ -d ".output/public" ]; then
+            cp .output/public/index.html .output/public/404.html || true
+            echo "artifact=.output/public" >> $GITHUB_ENV
+          else
+            cp dist/index.html dist/404.html || true
+            echo "artifact=dist" >> $GITHUB_ENV
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.artifact }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
