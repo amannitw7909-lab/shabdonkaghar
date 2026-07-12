@@ -1,8 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getPoem, poems } from "@/lib/poems";
 import { LikeButton } from "@/components/LikeButton";
+import { SITE_AUTHOR } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
+
 
 export const Route = createFileRoute("/poems/$slug")({
   loader: ({ params }) => {
