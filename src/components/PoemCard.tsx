@@ -9,11 +9,11 @@ export function PoemCard({ poem }: { poem: Poem }) {
     <Link
       to="/poems/$slug"
       params={{ slug: poem.slug }}
-      className="block rounded-lg border border-border bg-card p-6 transition hover:border-primary/40 hover:shadow-sm"
+      className="block rounded-lg border border-border bg-card p-5 sm:p-6 transition hover:border-primary/40 hover:shadow-sm"
     >
-      <div className="flex items-baseline justify-between gap-4">
-        <h3 className={cn("serif-title text-2xl", isDeva && "deva")}>{poem.title}</h3>
-        <span className="text-xs uppercase tracking-widest text-muted-foreground">
+      <div className="flex items-baseline justify-between gap-3">
+        <h3 className={cn("serif-title text-xl sm:text-2xl min-w-0 break-words", isDeva && "deva")}>{poem.title}</h3>
+        <span className="text-[10px] sm:text-xs uppercase tracking-widest text-muted-foreground shrink-0">
           {poem.category}
         </span>
       </div>
