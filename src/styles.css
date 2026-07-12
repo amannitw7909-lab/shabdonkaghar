@@ -113,9 +113,18 @@
 
 @utility poem-body {
   white-space: pre-wrap;
-  line-height: 2;
-  font-size: 1.25rem;
+  line-height: 1.9;
+  font-size: 1.125rem;
   letter-spacing: 0.01em;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+@media (min-width: 640px) {
+  .poem-body {
+    line-height: 2;
+    font-size: 1.25rem;
+  }
 }
 
 @utility deva {
