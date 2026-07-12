@@ -41,14 +41,14 @@ function PoemsIndex() {
   }, [query, category, language, fuse]);
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-12">
-      <h1 className="serif-title text-4xl">All Poems</h1>
-      <p className="mt-2 text-muted-foreground">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 py-8 sm:py-12">
+      <h1 className="serif-title text-3xl sm:text-4xl">All Poems</h1>
+      <p className="mt-2 text-sm sm:text-base text-muted-foreground">
         {poems.length} verses · search or filter by mood, language, and form.
       </p>
 
       {/* Search */}
-      <div className="mt-8 flex flex-col md:flex-row gap-3">
+      <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <input
@@ -56,33 +56,35 @@ function PoemsIndex() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search poems, tags, lines…"
-            className="w-full rounded-full border border-input bg-card pl-10 pr-4 py-2.5 text-sm outline-none focus:border-primary"
+            className="w-full rounded-full border border-input bg-card pl-10 pr-4 py-2.5 text-base sm:text-sm outline-none focus:border-primary"
           />
         </div>
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="rounded-full border border-input bg-card px-4 py-2.5 text-sm"
-        >
-          <option value="">All forms</option>
-          {categories.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.label}
-            </option>
-          ))}
-        </select>
-        <select
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-          className="rounded-full border border-input bg-card px-4 py-2.5 text-sm"
-        >
-          <option value="">All languages</option>
-          {languages.map((l) => (
-            <option key={l.id} value={l.id}>
-              {l.label}
-            </option>
-          ))}
-        </select>
+        <div className="flex gap-3">
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="flex-1 sm:flex-none rounded-full border border-input bg-card px-4 py-2.5 text-sm"
+          >
+            <option value="">All forms</option>
+            {categories.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.label}
+              </option>
+            ))}
+          </select>
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            className="flex-1 sm:flex-none rounded-full border border-input bg-card px-4 py-2.5 text-sm"
+          >
+            <option value="">All languages</option>
+            {languages.map((l) => (
+              <option key={l.id} value={l.id}>
+                {l.label}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {/* Results */}
