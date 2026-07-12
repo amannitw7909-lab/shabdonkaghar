@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Feather } from "lucide-react";
+import { SITE_AUTHOR } from "@/lib/site";
+
 
 export function SiteHeader() {
   return (
@@ -29,12 +31,19 @@ export function SiteHeader() {
 export function SiteFooter() {
   return (
     <footer className="border-t border-border mt-24">
-      <div className="mx-auto max-w-5xl px-6 py-8 text-sm text-muted-foreground flex justify-between">
-        <span>© {new Date().getFullYear()} Shabdon Ka Ghar</span>
-        <Link to="/admin" className="hover:text-primary">
-          ·
-        </Link>
+      <div className="mx-auto max-w-5xl px-6 py-8 text-sm text-muted-foreground flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <span>
+          Words by <span className="text-foreground font-medium">{SITE_AUTHOR.name}</span>
+          <span className="deva ml-2">· {SITE_AUTHOR.nameDeva}</span>
+        </span>
+        <span className="flex items-center gap-3">
+          <span>© {new Date().getFullYear()} Shabdon Ka Ghar</span>
+          <Link to="/admin" className="hover:text-primary" aria-label="Admin">
+            ·
+          </Link>
+        </span>
       </div>
     </footer>
   );
 }
+

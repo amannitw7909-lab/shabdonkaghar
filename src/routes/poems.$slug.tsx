@@ -1,8 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getPoem, poems } from "@/lib/poems";
 import { LikeButton } from "@/components/LikeButton";
+import { SITE_AUTHOR } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
+
 
 export const Route = createFileRoute("/poems/$slug")({
   loader: ({ params }) => {
@@ -80,6 +82,16 @@ function PoemDetail() {
       >
         {poem.body}
       </div>
+
+      <p
+        className={cn(
+          "mt-8 text-center text-primary italic",
+          isDeva && "deva not-italic",
+        )}
+      >
+        — {isDeva ? SITE_AUTHOR.nameDeva : SITE_AUTHOR.name}
+      </p>
+
 
       <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-8">
         <div className="flex flex-wrap gap-2">
