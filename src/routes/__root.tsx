@@ -72,10 +72,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Shabdon Ka Ghar — Poems & Shayari" },
       {
         property: "og:description",
-        content: "A quiet home for poems and shayari in Hindi and English.",
+        content: "A quiet home for poems and shayari in Hindi and English. Read, search, and heart the ones that stay with you.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Shabdon Ka Ghar — Poems & Shayari" },
+      { name: "twitter:description", content: "A quiet home for poems and shayari in Hindi and English. Read, search, and heart the ones that stay with you." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/140f283e-1a90-45fe-aca7-972bf975cda8/id-preview-070db3eb--758c43a3-f139-496b-97f8-99dc75eac09e.lovable.app-1783848638113.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/140f283e-1a90-45fe-aca7-972bf975cda8/id-preview-070db3eb--758c43a3-f139-496b-97f8-99dc75eac09e.lovable.app-1783848638113.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
