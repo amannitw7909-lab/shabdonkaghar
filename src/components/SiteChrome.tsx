@@ -30,8 +30,8 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border mt-24">
-      <div className="mx-auto max-w-5xl px-6 py-8 text-sm text-muted-foreground flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+    <footer className="border-t border-border mt-16 sm:mt-24">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 py-6 sm:py-8 text-sm text-muted-foreground flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <span>
           Words by <span className="text-foreground font-medium">{SITE_AUTHOR.name}</span>
           <span className="deva ml-2">· {SITE_AUTHOR.nameDeva}</span>
