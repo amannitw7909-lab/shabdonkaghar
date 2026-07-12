@@ -11,22 +11,22 @@ function Home() {
   const recent = poems.slice(0, 6);
 
   return (
-    <div className="mx-auto max-w-5xl px-6">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6">
       {/* Hero */}
-      <section className="py-20 text-center">
-        <p className="deva text-primary text-sm tracking-widest uppercase">
+      <section className="py-12 sm:py-20 text-center">
+        <p className="deva text-primary text-xs sm:text-sm tracking-widest uppercase">
           शब्दों का घर
         </p>
-        <h1 className="serif-title text-5xl md:text-6xl mt-4">
+        <h1 className="serif-title text-4xl sm:text-5xl md:text-6xl mt-3 sm:mt-4 leading-tight">
           A quiet corner for
           <br />
           <em className="text-primary">poems & shayari</em>
         </h1>
-        <p className="mt-6 max-w-xl mx-auto text-muted-foreground">
+        <p className="mt-5 sm:mt-6 max-w-xl mx-auto text-muted-foreground text-sm sm:text-base px-2">
           Verses in Hindi and English — written slowly, read slower. Wander through
           ghazals, nazms, shers, and small poems.
         </p>
-        <div className="mt-8 flex justify-center gap-3">
+        <div className="mt-7 sm:mt-8 flex justify-center gap-3">
           <Link
             to="/poems"
             className="rounded-full bg-primary px-6 py-2.5 text-sm text-primary-foreground hover:opacity-90"
@@ -38,36 +38,36 @@ function Home() {
 
       {/* Featured */}
       {featured && (
-        <section className="mb-16">
+        <section className="mb-12 sm:mb-16">
           <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">
             Featured
           </p>
           <Link
             to="/poems/$slug"
             params={{ slug: featured.slug }}
-            className="block rounded-lg border border-border bg-card p-10 hover:border-primary/40 transition"
+            className="block rounded-lg border border-border bg-card p-6 sm:p-10 hover:border-primary/40 transition"
           >
             <h2
-              className={`serif-title text-4xl ${
+              className={`serif-title text-3xl sm:text-4xl ${
                 featured.language === "hi" ? "deva" : ""
               }`}
             >
               {featured.title}
             </h2>
             <p
-              className={`mt-6 poem-body text-foreground/80 line-clamp-6 ${
+              className={`mt-4 sm:mt-6 poem-body text-foreground/80 line-clamp-6 ${
                 featured.language === "hi" ? "deva" : "font-serif"
               }`}
             >
               {featured.body}
             </p>
-            <p className="mt-6 text-sm text-primary">Read the whole poem →</p>
+            <p className="mt-5 sm:mt-6 text-sm text-primary">Read the whole poem →</p>
           </Link>
         </section>
       )}
 
       {/* Categories */}
-      <section className="mb-10 flex flex-wrap gap-2">
+      <section className="mb-8 sm:mb-10 flex flex-wrap gap-2">
         {categories.map((c) => (
           <Link
             key={c.id}
@@ -81,8 +81,8 @@ function Home() {
       </section>
 
       {/* Recent */}
-      <section className="mb-20">
-        <h2 className="serif-title text-2xl mb-6">Latest</h2>
+      <section className="mb-16 sm:mb-20">
+        <h2 className="serif-title text-2xl mb-4 sm:mb-6">Latest</h2>
         <div className="grid gap-4 md:grid-cols-2">
           {recent.map((p) => (
             <PoemCard key={p.slug} poem={p} />
