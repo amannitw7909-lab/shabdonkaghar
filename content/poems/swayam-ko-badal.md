@@ -2,7 +2,7 @@
 title: स्वयं को बदल
 title_en: Only You Can Change Yourself
 language: hi
-category: nazm
+category: poem
 tags: [prerna, atmavishwas, jeevan]
 date: 2026-07-07
 slug: swayam-ko-badal

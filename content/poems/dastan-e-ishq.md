@@ -2,7 +2,7 @@
 title: दास्तान-ए-इश्क़
 title_en: The Tale of My Love
 language: hi
-category: nazm
+category: poem
 tags: [ishq, judai, tanhai]
 date: 2026-07-03
 slug: dastan-e-ishq

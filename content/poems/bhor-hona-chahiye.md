@@ -2,7 +2,7 @@
 title: भोर होना चाहिए
 title_en: Let There Be Dawn
 language: hi
-category: nazm
+category: poem
 tags: [sapne, hausla, prerna]
 date: 2026-07-08
 slug: bhor-hona-chahiye

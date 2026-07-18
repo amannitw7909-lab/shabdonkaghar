@@ -23,7 +23,7 @@ export function allTags(): string[] {
 
 export const categories = [
   { id: "ghazal", label: "Ghazal" },
-  { id: "nazm", label: "Nazm" },
+  { id: "shayari", label: "Shayari" },
   { id: "sher", label: "Sher" },
   { id: "poem", label: "Poem" },
 ] as const;

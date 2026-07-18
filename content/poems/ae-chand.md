@@ -2,7 +2,7 @@
 title: ऐ चांद
 title_en: O Moon
 language: hi
-category: nazm
+category: poem
 tags: [chand, yaad, raat]
 date: 2026-07-05
 slug: ae-chand

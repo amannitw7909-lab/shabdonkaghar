@@ -2,7 +2,7 @@
 title: अधूरा इश्क़
 title_en: Unfinished Love
 language: hi
-category: nazm
+category: poem
 tags: [ishq, khamoshi, guftgu]
 date: 2026-07-01
 slug: adhoora-ishq

@@ -5,7 +5,7 @@ export type PoemMeta = {
   title: string;
   title_en?: string;
   language: "hi" | "en";
-  category: "ghazal" | "nazm" | "sher" | "poem";
+  category: "ghazal" | "shayari" | "sher" | "poem";
   tags: string[];
   date: string;
   slug: string;

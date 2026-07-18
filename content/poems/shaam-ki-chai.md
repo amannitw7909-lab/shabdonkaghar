@@ -2,7 +2,7 @@
 title: शाम की चाय
 title_en: Evening Tea
 language: hi
-category: nazm
+category: poem
 tags: [nostalgia, monsoon, chai]
 date: 2026-06-14
 slug: shaam-ki-chai

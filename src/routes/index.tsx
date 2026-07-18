@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { poems, categories } from "@/lib/poems";
 import { PoemCard } from "@/components/PoemCard";
+import { LikeButton } from "@/components/LikeButton";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -42,27 +43,32 @@ function Home() {
           <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">
             Featured
           </p>
-          <Link
-            to="/poems/$slug"
-            params={{ slug: featured.slug }}
-            className="block rounded-lg border border-border bg-card p-6 sm:p-10 hover:border-primary/40 transition"
-          >
-            <h2
-              className={`serif-title text-3xl sm:text-4xl ${
-                featured.language === "hi" ? "deva" : ""
-              }`}
+          <div className="rounded-lg border border-border bg-card hover:border-primary/40 transition">
+            <Link
+              to="/poems/$slug"
+              params={{ slug: featured.slug }}
+              className="block p-6 sm:p-10 pb-4"
             >
-              {featured.title}
-            </h2>
-            <p
-              className={`mt-4 sm:mt-6 poem-body text-foreground/80 line-clamp-6 ${
-                featured.language === "hi" ? "deva" : "font-serif"
-              }`}
-            >
-              {featured.body}
-            </p>
-            <p className="mt-5 sm:mt-6 text-sm text-primary">Read the whole poem →</p>
-          </Link>
+              <h2
+                className={`serif-title text-3xl sm:text-4xl ${
+                  featured.language === "hi" ? "deva" : ""
+                }`}
+              >
+                {featured.title}
+              </h2>
+              <p
+                className={`mt-4 sm:mt-6 poem-body text-foreground/80 line-clamp-6 ${
+                  featured.language === "hi" ? "deva" : "font-serif"
+                }`}
+              >
+                {featured.body}
+              </p>
+              <p className="mt-5 sm:mt-6 text-sm text-primary">Read the whole poem →</p>
+            </Link>
+            <div className="px-6 sm:px-10 pb-6 flex justify-end">
+              <LikeButton slug={featured.slug} />
+            </div>
+          </div>
         </section>
       )}
 
