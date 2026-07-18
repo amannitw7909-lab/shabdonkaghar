@@ -1,10 +1,34 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { readdirSync } from "node:fs";
+import { join } from "node:path";
+
+// Build the list of poem routes from the markdown files in /content/poems so
+// each poem detail page gets prerendered to HTML for GitHub Pages.
+function poemPages() {
+  try {
+    const dir = join(process.cwd(), "content", "poems");
+    return readdirSync(dir)
+      .filter((f) => f.endsWith(".md"))
+      .map((f) => ({ path: `/poems/${f.replace(/\.md$/, "")}`, prerender: { enabled: true } }));
+  } catch {
+    return [];
+  }
+}
 
 export default defineConfig({
+  // Disable nitro so TanStack Start's SPA prerender pipeline owns the build
+  // and emits plain static HTML/JS/CSS into dist/ — deployable to GitHub Pages.
+  nitro: false,
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
+    spa: { enabled: true, maskPath: "/" },
+    pages: [
+      { path: "/", prerender: { enabled: true } },
+      { path: "/poems", prerender: { enabled: true } },
+      { path: "/about", prerender: { enabled: true } },
+      { path: "/admin", prerender: { enabled: true } },
+      ...poemPages(),
+    ],
   },
   vite: {
     plugins: [
