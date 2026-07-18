@@ -2,14 +2,14 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { readdirSync } from "node:fs";
 import { join } from "node:path";
 
-// Build the list of routes to prerender from the markdown files in /content/poems.
-// This keeps the static export in sync with actual content.
-function poemRoutes(): string[] {
+// Build the list of poem routes from the markdown files in /content/poems so
+// each poem detail page gets prerendered to HTML for GitHub Pages.
+function poemPages() {
   try {
     const dir = join(process.cwd(), "content", "poems");
     return readdirSync(dir)
       .filter((f) => f.endsWith(".md"))
-      .map((f) => `/poems/${f.replace(/\.md$/, "")}`);
+      .map((f) => ({ path: `/poems/${f.replace(/\.md$/, "")}`, prerender: { enabled: true } }));
   } catch {
     return [];
   }
@@ -17,20 +17,18 @@ function poemRoutes(): string[] {
 
 export default defineConfig({
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     server: { entry: "server" },
-  },
-  // Build a fully static site (no server runtime) for GitHub Pages.
-  nitro: {
-    preset: "static",
-    // Extra nitro options not typed by the wrapper — cast through unknown.
-    ...({
-      prerender: {
-        crawlLinks: true,
-        failOnError: false,
-        routes: ["/", "/poems", "/about", "/admin", "/404", ...poemRoutes()],
-      },
-    } as unknown as Record<string, never>),
+    // Ship as a single-page app: emit a static shell + client bundle, then
+    // prerender each known route to its own HTML file. No server runtime is
+    // needed at deploy time, so this can be hosted on GitHub Pages.
+    spa: { enabled: true, maskPath: "/" },
+    pages: [
+      { path: "/", prerender: { enabled: true } },
+      { path: "/poems", prerender: { enabled: true } },
+      { path: "/about", prerender: { enabled: true } },
+      { path: "/admin", prerender: { enabled: true } },
+      ...poemPages(),
+    ],
   },
   vite: {
     plugins: [
