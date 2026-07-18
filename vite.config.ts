@@ -23,11 +23,14 @@ export default defineConfig({
   // Build a fully static site (no server runtime) for GitHub Pages.
   nitro: {
     preset: "static",
-    prerender: {
-      crawlLinks: true,
-      failOnError: false,
-      routes: ["/", "/poems", "/about", "/admin", "/404", ...poemRoutes()],
-    },
+    // Extra nitro options not typed by the wrapper — cast through unknown.
+    ...({
+      prerender: {
+        crawlLinks: true,
+        failOnError: false,
+        routes: ["/", "/poems", "/about", "/admin", "/404", ...poemRoutes()],
+      },
+    } as unknown as Record<string, never>),
   },
   vite: {
     plugins: [
