@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import Fuse from "fuse.js";
 import { z } from "zod";
@@ -19,9 +19,24 @@ export const Route = createFileRoute("/poems/")({
 
 function PoemsIndex() {
   const initial = Route.useSearch();
+  const navigate = useNavigate({ from: "/poems/" });
   const [query, setQuery] = useState(initial.q ?? "");
   const [category, setCategory] = useState<string>(initial.category ?? "");
   const [language, setLanguage] = useState<string>(initial.language ?? "");
+
+  // Keep URL search params in sync with filter state
+  function updateSearch(patch: { q?: string; category?: string; language?: string }) {
+    navigate({
+      search: (prev) => ({
+        ...prev,
+        ...patch,
+        q: ("q" in patch ? patch.q : prev.q) || undefined,
+        category: ("category" in patch ? patch.category : prev.category) || undefined,
+        language: ("language" in patch ? patch.language : prev.language) || undefined,
+      }),
+      replace: true,
+    });
+  }
 
   const fuse = useMemo(
     () =>
@@ -54,7 +69,7 @@ function PoemsIndex() {
           <input
             type="text"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => { setQuery(e.target.value); updateSearch({ q: e.target.value }); }}
             placeholder="Search poems, tags, lines…"
             className="w-full rounded-full border border-input bg-card pl-10 pr-4 py-2.5 text-base sm:text-sm outline-none focus:border-primary"
           />
@@ -62,7 +77,7 @@ function PoemsIndex() {
         <div className="flex gap-3">
           <select
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) => { setCategory(e.target.value); updateSearch({ category: e.target.value }); }}
             className="flex-1 sm:flex-none rounded-full border border-input bg-card px-4 py-2.5 text-sm"
           >
             <option value="">All forms</option>
@@ -74,7 +89,7 @@ function PoemsIndex() {
           </select>
           <select
             value={language}
-            onChange={(e) => setLanguage(e.target.value)}
+            onChange={(e) => { setLanguage(e.target.value); updateSearch({ language: e.target.value }); }}
             className="flex-1 sm:flex-none rounded-full border border-input bg-card px-4 py-2.5 text-sm"
           >
             <option value="">All languages</option>
@@ -89,9 +104,14 @@ function PoemsIndex() {
 
       {/* Results */}
       <div className="mt-8 grid gap-4 md:grid-cols-2">
-        {results.map((p) => (
-          <PoemCard key={p.slug} poem={p} />
-        ))}
+        {results.map((p) => {
+          // Build the search params to forward into the poem detail URL
+          const poemSearch: Record<string, string> = {};
+          if (category) poemSearch.category = category;
+          if (language) poemSearch.language = language;
+          if (query.trim()) poemSearch.q = query.trim();
+          return <PoemCard key={p.slug} poem={p} poemSearch={poemSearch} />;
+        })}
       </div>
       {results.length === 0 && (
         <p className="mt-16 text-center text-muted-foreground">

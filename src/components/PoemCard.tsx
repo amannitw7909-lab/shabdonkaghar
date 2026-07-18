@@ -2,13 +2,21 @@ import { Link } from "@tanstack/react-router";
 import type { Poem } from "@/lib/frontmatter";
 import { cn } from "@/lib/utils";
 
-export function PoemCard({ poem }: { poem: Poem }) {
+interface PoemCardProps {
+  poem: Poem;
+  /** Search params to forward so the poem detail page knows the filter context */
+  poemSearch?: Record<string, string>;
+}
+
+export function PoemCard({ poem, poemSearch = {} }: PoemCardProps) {
   const isDeva = poem.language === "hi";
   const preview = poem.body.split("\n").slice(0, 2).join("\n");
+
   return (
     <Link
       to="/poems/$slug"
       params={{ slug: poem.slug }}
+      search={poemSearch}
       className="block rounded-lg border border-border bg-card p-5 sm:p-6 transition hover:border-primary/40 hover:shadow-sm"
     >
       <div className="flex items-baseline justify-between gap-3">
