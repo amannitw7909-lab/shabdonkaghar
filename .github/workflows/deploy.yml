@@ -24,24 +24,27 @@ jobs:
           bun-version: latest
       - run: bun install --frozen-lockfile
       - name: Build static site
-        env:
-          NITRO_PRESET: static
         run: bun run build
       - name: Prepare Pages artifact
         run: |
-          # TanStack Start (nitro static preset) outputs to .output/public
-          # Fall back to dist/ if that path doesn't exist.
-          if [ -d ".output/public" ]; then
-            cp .output/public/index.html .output/public/404.html || true
-            echo "artifact=.output/public" >> $GITHUB_ENV
-          else
-            cp dist/index.html dist/404.html || true
-            echo "artifact=dist" >> $GITHUB_ENV
+          # Static SPA output lives in dist/client (prerendered HTML + assets).
+          # Fall back to the SPA shell for the home page and 404 so client-side
+          # routing keeps working on refreshes / unknown paths.
+          if [ ! -f dist/client/index.html ] && [ -f dist/client/_shell.html ]; then
+            cp dist/client/_shell.html dist/client/index.html
           fi
+          if [ -f dist/client/_shell.html ]; then
+            cp dist/client/_shell.html dist/client/404.html
+          elif [ -f dist/client/index.html ]; then
+            cp dist/client/index.html dist/client/404.html
+          fi
+          # GitHub Pages skips folders that start with an underscore unless we
+          # opt out with a .nojekyll marker — required for /assets/ etc.
+          touch dist/client/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ env.artifact }}
+          path: dist/client
 
   deploy:
     needs: build
