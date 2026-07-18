@@ -16,11 +16,11 @@ function poemPages() {
 }
 
 export default defineConfig({
+  // Disable nitro so TanStack Start's SPA prerender pipeline owns the build
+  // and emits plain static HTML/JS/CSS into dist/ — deployable to GitHub Pages.
+  nitro: false,
   tanstackStart: {
     server: { entry: "server" },
-    // Ship as a single-page app: emit a static shell + client bundle, then
-    // prerender each known route to its own HTML file. No server runtime is
-    // needed at deploy time, so this can be hosted on GitHub Pages.
     spa: { enabled: true, maskPath: "/" },
     pages: [
       { path: "/", prerender: { enabled: true } },
