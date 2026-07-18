@@ -21,10 +21,17 @@ function poemPages() {
   }
 }
 
+// The GitHub Pages deployment lives at /shabdonkaghar/ — set the Vite base so
+// all asset URLs are emitted with this prefix instead of root /.
+const BASE = "/shabdonkaghar/";
+
 export default defineConfig({
   // Disable nitro so TanStack Start's SPA prerender pipeline owns the build
   // and emits plain static HTML/JS/CSS into dist/ — deployable to GitHub Pages.
   nitro: false,
+  vite: {
+    base: BASE,
+  },
   tanstackStart: {
     server: { entry: "server" },
     spa: { enabled: true, maskPath: "/" },
