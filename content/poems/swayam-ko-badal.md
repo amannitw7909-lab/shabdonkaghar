@@ -6,6 +6,8 @@ category: poem
 tags: [prerna, atmavishwas, jeevan]
 date: 2026-07-07
 slug: swayam-ko-badal
+likes: 75
+starred: false
 ---
 संवरना भी तुम्हें है, संभलना भी तुम्हें है,
 कोई तुम्हारे लिए क्या कर सकता है।

@@ -9,6 +9,8 @@ export type PoemMeta = {
   tags: string[];
   date: string;
   slug: string;
+  likes?: number;
+  starred?: boolean;
 };
 
 export type Poem = PoemMeta & {
@@ -49,6 +51,8 @@ export function parseMarkdown(source: string): Poem {
     tags: Array.isArray(meta.tags) ? meta.tags : [],
     date: String(meta.date ?? ""),
     slug: String(meta.slug ?? ""),
+    likes: meta.likes ? parseInt(String(meta.likes), 10) : 0,
+    starred: meta.starred === "true",
     body: body.trim(),
   };
 }
@@ -62,6 +66,8 @@ export function serializePoem(poem: Poem): string {
     `tags: [${poem.tags.map((t) => t).join(", ")}]`,
     `date: ${poem.date}`,
     `slug: ${poem.slug}`,
+    poem.likes !== undefined ? `likes: ${poem.likes}` : null,
+    poem.starred ? `starred: ${poem.starred}` : null,
   ]
     .filter(Boolean)
     .join("\n");

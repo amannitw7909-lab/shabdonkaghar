@@ -6,6 +6,8 @@ category: poem
 tags: [chand, yaad, raat]
 date: 2026-07-05
 slug: ae-chand
+likes: 56
+starred: false
 ---
 ऐ चांद,
 यूँ रोज़ न अपने घर से निकला करो,

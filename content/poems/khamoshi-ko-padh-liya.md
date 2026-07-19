@@ -6,6 +6,8 @@ category: sher
 tags: [khamoshi, mulaqat, ishq]
 date: 2026-07-02
 slug: khamoshi-ko-padh-liya
+likes: 52
+starred: true
 ---
 मुद्दतों बाद मेरी उससे बात हुई,
 जो आज तक न हुई थी, आज वो बात हुई।

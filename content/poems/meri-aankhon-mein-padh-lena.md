@@ -6,6 +6,8 @@ category: poem
 tags: [izhaar, lafz, dosti, dil, khamoshi, darr]
 date: 2026-07-19
 slug: meri-aankhon-mein-padh-lena
+likes: 39
+starred: false
 ---
 सुनो तुम मेरे प्यार को मेरी आंखों में पढ़ लेना।
 मैं वो लड़का हूं

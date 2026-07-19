@@ -6,6 +6,8 @@ category: sher
 tags: [mulaqat, muskaan, jazbaat]
 date: 2026-07-04
 slug: chand-mulaqatein
+likes: 60
+starred: false
 ---
 वो मुस्कुराता चेहरा और गुनगुनाती आँखें,
 वो नखरे वाले तेवर और प्यारी-प्यारी बातें।

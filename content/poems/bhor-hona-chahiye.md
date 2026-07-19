@@ -6,6 +6,8 @@ category: poem
 tags: [sapne, hausla, prerna]
 date: 2026-07-08
 slug: bhor-hona-chahiye
+likes: 81
+starred: true
 ---
 मुकम्मल होंगे सपने, सपनों में ज़ोर होना चाहिए,
 ज़ोर इतना कि

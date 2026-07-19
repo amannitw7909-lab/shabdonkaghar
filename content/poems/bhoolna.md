@@ -6,6 +6,8 @@ category: sher
 tags: [yaad, waqt, zindagi]
 date: 2026-07-06
 slug: bhoolna
+likes: 88
+starred: false
 ---
 भूलना सबसे आसान चीज़ है इस व्यस्त दुनिया में,
 किन्तु कुछ पलों को भूलने की कोशिश

@@ -6,6 +6,8 @@ category: poem
 tags: [nostalgia, monsoon, chai]
 date: 2026-06-14
 slug: shaam-ki-chai
+likes: 59
+starred: true
 ---
 शाम ढले जब बूँदें गिरतीं,
 खिड़की पर मैं बैठा रहता।

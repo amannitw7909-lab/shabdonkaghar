@@ -6,6 +6,8 @@ category: poem
 tags: [ishq, judai, tanhai]
 date: 2026-07-03
 slug: dastan-e-ishq
+likes: 97
+starred: false
 ---
 क्या ही सुनाऊँ मैं
 अपने इश्क़ की दास्तां,

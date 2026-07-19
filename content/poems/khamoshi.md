@@ -6,6 +6,8 @@ category: sher
 tags: [love, silence]
 date: 2026-06-28
 slug: khamoshi
+likes: 16
+starred: false
 ---
 कुछ बातें ऐसी होती हैं,
 जिन्हें कहने से डर लगता है।

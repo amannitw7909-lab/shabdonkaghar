@@ -6,6 +6,8 @@ category: poem
 tags: [ishq, dard, pagalpan, bewakoofi, pal, tanhai]
 date: 2026-07-19
 slug: bewakoofi-ya-ishq
+likes: 48
+starred: true
 ---
 मुझे पता है तुम्हारे साथ बिताया गया एक और पल
 मुझे और अधिक तकलीफ देगा

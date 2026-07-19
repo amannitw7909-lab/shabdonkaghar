@@ -6,6 +6,8 @@ category: poem
 tags: [ishq, khamoshi, guftgu]
 date: 2026-07-01
 slug: adhoora-ishq
+likes: 45
+starred: true
 ---
 न मैं इश्क़ बयां कर रहा, न वो कर रही
 सुनने को हूँ आतुर मैं भी, ये जानती वो भी
