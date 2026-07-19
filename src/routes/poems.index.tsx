@@ -11,7 +11,7 @@ const searchSchema = z.object({
   category: z.string().optional(),
   language: z.string().optional(),
   tab: z.enum(["all", "starred"]).optional(),
-  sort: z.enum(["newest", "oldest", "likes"]).optional(),
+  sort: z.enum(["newest", "oldest", "likes", "least_liked"]).optional(),
   tag: z.string().optional(),
 });
 
@@ -27,11 +27,11 @@ function PoemsIndex() {
   const [category, setCategory] = useState<string>(initial.category ?? "");
   const [language, setLanguage] = useState<string>(initial.language ?? "");
   const [tab, setTab] = useState<"all" | "starred">(initial.tab ?? "all");
-  const [sort, setSort] = useState<"newest" | "oldest" | "likes">(initial.sort ?? "newest");
+  const [sort, setSort] = useState<"newest" | "oldest" | "likes" | "least_liked">(initial.sort ?? "newest");
   const [tag, setTag] = useState<string>(initial.tag ?? "");
 
   // Keep URL search params in sync with filter state
-  function updateSearch(patch: { q?: string; category?: string; language?: string; tab?: "all" | "starred"; sort?: "newest" | "oldest" | "likes"; tag?: string }) {
+  function updateSearch(patch: { q?: string; category?: string; language?: string; tab?: "all" | "starred"; sort?: "newest" | "oldest" | "likes" | "least_liked"; tag?: string }) {
     navigate({
       search: (prev) => ({
         ...prev,
@@ -69,6 +69,8 @@ function PoemsIndex() {
     
     if (sort === "likes") {
       list.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+    } else if (sort === "least_liked") {
+      list.sort((a, b) => (a.likes || 0) - (b.likes || 0));
     } else if (sort === "oldest") {
       list.sort((a, b) => (a.date > b.date ? 1 : -1));
     } else {
@@ -137,7 +139,7 @@ function PoemsIndex() {
           <select
             value={sort}
             onChange={(e) => { 
-              const val = e.target.value as "newest" | "oldest" | "likes";
+              const val = e.target.value as "newest" | "oldest" | "likes" | "least_liked";
               setSort(val); 
               updateSearch({ sort: val }); 
             }}
@@ -146,6 +148,7 @@ function PoemsIndex() {
             <option value="newest">Sort: Newest</option>
             <option value="oldest">Sort: Oldest</option>
             <option value="likes">Sort: Most Loved</option>
+            <option value="least_liked">Sort: Less Loved</option>
           </select>
         </div>
       </div>
@@ -154,7 +157,7 @@ function PoemsIndex() {
       <div className="mt-8 flex gap-6 border-b border-border">
         {(
           [
-            { id: "all", label: "All Poems" },
+            { id: "all", label: "All" },
             { id: "starred", label: "Starred" },
           ] as const
         ).map((t) => (

@@ -12,13 +12,7 @@ export function LikeButton({ slug, initialCount }: { slug: string; initialCount?
     setLiked(hasLiked(slug));
     // Only fetch if we really need to, or just fetch to sync
     getCount(slug).then((c) => {
-      // If we got a 0 but initialCount is higher, it might be a rate limit or uninitialized remote key.
-      // Let's prefer the higher count to avoid showing 0.
-      if (c === 0 && initialCount && initialCount > 0) {
-        setCount(initialCount);
-      } else {
-        setCount(c);
-      }
+      setCount((initialCount ?? 0) + c);
     });
   }, [slug, initialCount]);
 
@@ -35,7 +29,7 @@ export function LikeButton({ slug, initialCount }: { slug: string; initialCount?
     try {
       const next = await incrementLike(slug);
       if (next > 0) {
-        setCount(next);
+        setCount((initialCount ?? 0) + next);
       }
     } catch (err) {
       // Revert on failure
