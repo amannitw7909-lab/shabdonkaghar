@@ -4,10 +4,8 @@ title_en: Still Holding On
 language: hi
 category: sher
 tags: [raabta, vaasta, intezaar, rishta, dil]
-date: 2026-07-19
+date: 2026-07-20
 slug: vaasta-rakha-hai-usse
-likes: 64
-starred: false
 ---
 उसने भले ही राबता ना किया हो हमसे,
 पर हमने अभी भी वासता रखा है उससे।।
